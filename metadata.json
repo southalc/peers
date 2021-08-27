@@ -1,0 +1,65 @@
+{
+  "name": "southalc-peers",
+  "version": "0.1.0",
+  "author": "Chris Southall",
+  "summary": "Functions for finding nodes with matching resources",
+  "license": "Apache-2.0",
+  "source": "https://github.com/southalc/peers",
+  "project_page": "https://github.com/southalc/peers",
+  "issues_url": "https://github.com/southalc/peers/issues",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystem": "OracleLinux"
+    },
+    {
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystem": "Scientific"
+    },
+    {
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystem": "Fedora"
+    },
+    {
+      "operatingsystem": "Darwin"
+    },
+    {
+      "operatingsystem": "SLES"
+    },
+    {
+      "operatingsystem": "Solaris"
+    },
+    {
+      "operatingsystem": "windows"
+    },
+    {
+      "operatingsystem": "AIX"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.21.0 < 8.0.0"
+    }
+  ],
+  "tags": [
+    "cluster",
+    "members",
+    "peers"
+  ],
+  "pdk-version": "2.2.0",
+  "template-url": "pdk-default#2.2.0",
+  "template-ref": "tags/2.2.0-0-g2381db6"
+}
