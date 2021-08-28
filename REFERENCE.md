@@ -4,22 +4,12 @@
 
 ## Table of Contents
 
-### Classes
-
-* [`peers`](#peers): A short summary of the purpose of this class
-
 ### Functions
 
 * [`peers::resource_by_param`](#peersresource_by_param): Return an array of nodes by certname that have a resource matching the given
 class, parameter, parameter value, and environment.
 * [`peers::resource_by_tag`](#peersresource_by_tag): Return an array of nodes by certname that have a resource matching the given
 class, tag, and environment.
-
-## Classes
-
-### `peers`
-
-A short summary of the purpose of this class
 
 ## Functions
 

@@ -10,18 +10,15 @@
 
 ## Description
 
-Clustered applications often require the cluster members to be defined in the
-configuration.  This module offers a simple way to obtain this data in your
-manifests by providing functions to locate nodes with specific resources.  The
-functions identify nodes by the puppet certname, but since this is typically the
-FQDN of the node it should be sufficient for most use cases.
+This module includes functions to obtain an array of nodes with puppet resources
+that match specific criteria.  This is useful for things like getting a list of
+cluster members. The module does not require exported resources, although
+puppetdb is required.
 
 ## Setup
 
 Deploying the module to an environment should be all that is necessary to use the
 included functions.  The module itself does not manage any resources.
-
-The module requires puppetdb to be installed as it relys on the 'puppetdb_query' function.
 
 ## Usage
 
@@ -34,9 +31,9 @@ cluster, adjust the value for quorum, and update seed hosts.
 $elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-1')
 ```
 
-The functions default to the 'production' environment, but this can be passed to
-as a parameter.  To repeat the above Elasticsearch query, but in the "test"
-environment:
+The functions default to the 'production' environment, but this can be overridden
+by passing another parameter to the function. To repeat the last Elasticsearch
+query, but in the "test" environment:
 ```
 $elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-1', 'test')
 ```

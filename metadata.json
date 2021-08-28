@@ -7,46 +7,20 @@
   "source": "https://github.com/southalc/peers",
   "project_page": "https://github.com/southalc/peers",
   "issues_url": "https://github.com/southalc/peers/issues",
-  "dependencies": [
-
-  ],
+  "dependencies": [ ],
   "operatingsystem_support": [
-    {
-      "operatingsystem": "CentOS"
-    },
-    {
-      "operatingsystem": "OracleLinux"
-    },
-    {
-      "operatingsystem": "RedHat"
-    },
-    {
-      "operatingsystem": "Scientific"
-    },
-    {
-      "operatingsystem": "Debian"
-    },
-    {
-      "operatingsystem": "Ubuntu"
-    },
-    {
-      "operatingsystem": "Fedora"
-    },
-    {
-      "operatingsystem": "Darwin"
-    },
-    {
-      "operatingsystem": "SLES"
-    },
-    {
-      "operatingsystem": "Solaris"
-    },
-    {
-      "operatingsystem": "windows"
-    },
-    {
-      "operatingsystem": "AIX"
-    }
+    { "operatingsystem": "CentOS" },
+    { "operatingsystem": "OracleLinux" },
+    { "operatingsystem": "RedHat" },
+    { "operatingsystem": "Scientific" },
+    { "operatingsystem": "Debian" },
+    { "operatingsystem": "Ubuntu" },
+    { "operatingsystem": "Fedora" },
+    { "operatingsystem": "Darwin" },
+    { "operatingsystem": "SLES" },
+    { "operatingsystem": "Solaris" },
+    { "operatingsystem": "windows" },
+    { "operatingsystem": "AIX" }
   ],
   "requirements": [
     {
