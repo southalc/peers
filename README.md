@@ -11,14 +11,14 @@
 ## Description
 
 This module includes functions to obtain an array of nodes with puppet resources
-that match specific criteria.  This is useful for things like getting a list of
-cluster members. The module does not require exported resources, although
-puppetdb is required.
+that match specific criteria.  This is useful for things like getting a dynamic
+list of nodes that are cluster members. The module does not use exported resources,
+although puppetdb is required.
 
 ## Setup
 
 Deploying the module to an environment should be all that is necessary to use the
-included functions.  The module itself does not manage any resources.
+included functions.  The module does not manage any resources.
 
 ## Usage
 
@@ -36,6 +36,14 @@ by passing another parameter to the function. To repeat the last Elasticsearch
 query, but in the "test" environment:
 ```
 $elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-1', 'test')
+```
+
+The other module functions enable searching for nodes based on different criteria.  See
+the module reference for details, but here's another example to get nodes with the
+'elasticsearch' module assigned, this time matching nodes based on the trusted
+fact extension 'pp_cluster' set to the value of 'cluster-01':
+```
+$elk_servers = peers::resource_by_tx('elasticsearch', 'pp_cluster', 'cluster-01')
 ```
 
 Besides direct configuration of the Elasticsearch cluster, the array of cluster
