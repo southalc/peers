@@ -5,19 +5,21 @@
 # 
 # @param tag The value of a tag associated with the resource.
 # 
-# @param environment The environment of the matching resources.
+# @param env An optional environment to search for matching resources. Defaults to the node environment.
+#
+# @return [Array] certnames that match function parameters
 # 
 function peers::resource_by_tag(
   String $class,
   String $tag,
-  String $environment = 'production',
+  String $env = $server_facts['environment'],
   ) >> Array {
 
   $query = [
     'from', 'resources', [
       'and',
       ['=', 'type', 'Class'],
-      ['=', 'environment', $environment],
+      ['=', 'environment', $env],
       ['=', 'title', capitalize($class)],
       ['=', 'tag', $tag]
     ]

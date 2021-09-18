@@ -31,7 +31,7 @@ cluster, adjust the value for quorum, and update seed hosts.
 $elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-1')
 ```
 
-The functions default to the 'production' environment, but this can be overridden
+The functions default to the node's environment, but this can be overridden
 by passing another parameter to the function. To repeat the last Elasticsearch
 query, but in the "test" environment:
 ```
@@ -58,6 +58,5 @@ Puppet distributions where puppetdb is included.
 
 ## Development
 
-I'd appreciate any feedback.  To contribute to development, fork the source and
-submit a pull request.
+I'd appreciate any feedback.  To contribute to development, fork the source and submit a pull request.
 

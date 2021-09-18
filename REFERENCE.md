@@ -6,19 +6,81 @@
 
 ### Functions
 
+* [`peers::resource_by_fact`](#peersresource_by_fact): Return an array of nodes by certname that have a resource matching the given
+class, fact value, and environment.
 * [`peers::resource_by_param`](#peersresource_by_param): Return an array of nodes by certname that have a resource matching the given
-class, parameter, parameter value, and environment.
+class, parameter value, and environment.
+* [`peers::resource_by_param_w_fact`](#peersresource_by_param_w_fact): Return a hash of certnames mapped to fact values when the node has a resource matching
 * [`peers::resource_by_tag`](#peersresource_by_tag): Return an array of nodes by certname that have a resource matching the given
 class, tag, and environment.
+* [`peers::resource_by_tx`](#peersresource_by_tx): Return an array of nodes by certname that have a resource matching the given
+class, trusted extension value, and environment.
 
 ## Functions
+
+### `peers::resource_by_fact`
+
+Type: Puppet Language
+
+Return an array of nodes by certname that have a resource matching the given
+class, fact value, and environment.
+
+#### Examples
+
+##### Get an array of nodes with the 'elasticsearch' class assigned that have the value
+
+```puppet
+of 'cluster-01' assigned as the fact named 'cluster':
+
+$elk_servers = peers::resource_by_fact('elasticsearch', 'cluster', 'cluster-01')
+```
+
+#### `peers::resource_by_fact(String $class, String $fact, String $value, String $env = $server_facts['environment'])`
+
+The peers::resource_by_fact function.
+
+Returns: `Array` certnames that match function parameters
+
+##### Examples
+
+###### Get an array of nodes with the 'elasticsearch' class assigned that have the value
+
+```puppet
+of 'cluster-01' assigned as the fact named 'cluster':
+
+$elk_servers = peers::resource_by_fact('elasticsearch', 'cluster', 'cluster-01')
+```
+
+##### `class`
+
+Data type: `String`
+
+The class name associated with the resource.
+
+##### `fact`
+
+Data type: `String`
+
+The fact name from the node with the resource.
+
+##### `value`
+
+Data type: `String`
+
+The value of the given fact for the node.
+
+##### `env`
+
+Data type: `String`
+
+An optional environment to search for matching resources. Defaults to the node environment.
 
 ### `peers::resource_by_param`
 
 Type: Puppet Language
 
 Return an array of nodes by certname that have a resource matching the given
-class, parameter, parameter value, and environment.
+class, parameter value, and environment.
 
 #### Examples
 
@@ -30,11 +92,11 @@ of 'cluster-01' assigned as the class parameter 'config.cluster.name':
 $elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-01')
 ```
 
-#### `peers::resource_by_param(String $class, String $parameter, String $value, String $environment = 'production')`
+#### `peers::resource_by_param(String $class, String $parameter, String $value, String $env = $server_facts['environment'])`
 
 The peers::resource_by_param function.
 
-Returns: `Array`
+Returns: `Array` certnames that match function parameters
 
 ##### Examples
 
@@ -64,11 +126,75 @@ Data type: `String`
 
 The value of the given parameter associated with the resource.
 
-##### `environment`
+##### `env`
 
 Data type: `String`
 
-The environment to search for matching resources.
+An optional environment to search for matching resources. Defaults to the node environment.
+
+### `peers::resource_by_param_w_fact`
+
+Type: Puppet Language
+
+the given class, parameter value, fact name, and environment.
+
+#### Examples
+
+##### Get a hash where the keys are nodes with the 'elasticsearch' class assigned that have the value
+
+```puppet
+of 'cluster-01' assigned as the class parameter 'config.cluster.name', and the hash values are from the
+custom fact 'node_cert_serial':
+
+$elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-01', 'node_cert_serial')
+```
+
+#### `peers::resource_by_param_w_fact(String $class, String $parameter, String $value, String $fact, String $env = $server_facts['environment'])`
+
+the given class, parameter value, fact name, and environment.
+
+Returns: `Hash` Hash keys are certnames with values set to value of the given fact for the node.
+
+##### Examples
+
+###### Get a hash where the keys are nodes with the 'elasticsearch' class assigned that have the value
+
+```puppet
+of 'cluster-01' assigned as the class parameter 'config.cluster.name', and the hash values are from the
+custom fact 'node_cert_serial':
+
+$elk_servers = peers::resource_by_param('elasticsearch', 'config.cluster.name', 'cluster-01', 'node_cert_serial')
+```
+
+##### `class`
+
+Data type: `String`
+
+The class name associated with the resource.
+
+##### `parameter`
+
+Data type: `String`
+
+The parameter name associated with the resource.
+
+##### `value`
+
+Data type: `String`
+
+The value of the given parameter associated with the resource.
+
+##### `fact`
+
+Data type: `String`
+
+The name of some fact where the value will be paired with the certname in the returned hash.
+
+##### `env`
+
+Data type: `String`
+
+An optional environment to search for matching resources. Defaults to the node environment.
 
 ### `peers::resource_by_tag`
 
@@ -77,11 +203,11 @@ Type: Puppet Language
 Return an array of nodes by certname that have a resource matching the given
 class, tag, and environment.
 
-#### `peers::resource_by_tag(String $class, String $tag, String $environment = 'production')`
+#### `peers::resource_by_tag(String $class, String $tag, String $env = $server_facts['environment'])`
 
 The peers::resource_by_tag function.
 
-Returns: `Array`
+Returns: `Array` certnames that match function parameters
 
 ##### `class`
 
@@ -95,9 +221,66 @@ Data type: `String`
 
 The value of a tag associated with the resource.
 
-##### `environment`
+##### `env`
 
 Data type: `String`
 
-The environment of the matching resources.
+An optional environment to search for matching resources. Defaults to the node environment.
+
+### `peers::resource_by_tx`
+
+Type: Puppet Language
+
+Return an array of nodes by certname that have a resource matching the given
+class, trusted extension value, and environment.
+
+#### Examples
+
+##### Get an array of nodes with the 'elasticsearch' class assigned that have the value
+
+```puppet
+of 'cluster-01' assigned as the trusted fact extension 'pp_cluster':
+
+$elk_servers = peers::resource_by_tx('elasticsearch', 'pp_cluster', 'cluster-01')
+```
+
+#### `peers::resource_by_tx(String $class, String $trusted_fact, String $value, String $env = $server_facts['environment'])`
+
+The peers::resource_by_tx function.
+
+Returns: `Array` certnames that match function parameters
+
+##### Examples
+
+###### Get an array of nodes with the 'elasticsearch' class assigned that have the value
+
+```puppet
+of 'cluster-01' assigned as the trusted fact extension 'pp_cluster':
+
+$elk_servers = peers::resource_by_tx('elasticsearch', 'pp_cluster', 'cluster-01')
+```
+
+##### `class`
+
+Data type: `String`
+
+The class name associated with the resource.
+
+##### `trusted_fact`
+
+Data type: `String`
+
+The name of the trusted fact extension to match.
+
+##### `value`
+
+Data type: `String`
+
+The value of the trusted fact extension to match.
+
+##### `env`
+
+Data type: `String`
+
+An optional environment to search for matching resources. Defaults to the node environment.
 
